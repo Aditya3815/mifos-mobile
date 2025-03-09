@@ -18,7 +18,7 @@ interface UserDetailRepository {
 
     suspend fun registerNotification(payload: NotificationRegisterPayload?): DataState<String>
 
-    fun getUserNotificationId(id: Long): Flow<DataState<NotificationUserDetail>>
+    fun getUserNotificationId(id: Long?): Flow<DataState<NotificationUserDetail>>
 
     suspend fun updateRegisterNotification(
         id: Long,

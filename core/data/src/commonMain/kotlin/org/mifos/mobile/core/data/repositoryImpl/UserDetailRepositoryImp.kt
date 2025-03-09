@@ -36,7 +36,7 @@ class UserDetailRepositoryImp(
         }
     }
 
-    override fun getUserNotificationId(id: Long): Flow<DataState<NotificationUserDetail>> {
+    override fun getUserNotificationId(id: Long?): Flow<DataState<NotificationUserDetail>> {
         return dataManager.notificationApi.getUserNotificationId(id)
             .asDataStateFlow().flowOn(ioDispatcher)
     }
