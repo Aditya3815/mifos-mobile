@@ -18,26 +18,34 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import mifos_mobile.feature.user_profile.generated.resources.Res
+import mifos_mobile.feature.user_profile.generated.resources.ic_cake_24dp
+import mifos_mobile.feature.user_profile.generated.resources.ic_gender_24dp
+import mifos_mobile.feature.user_profile.generated.resources.ic_phone_24dp
+import mifos_mobile.feature.user_profile.generated.resources.user_details
+import org.jetbrains.compose.resources.painterResource
+import org.jetbrains.compose.resources.stringResource
 import org.mifos.mobile.core.designsystem.theme.MifosMobileTheme
-import org.mifos.mobile.core.ui.utils.DevicePreviews
-import org.mifos.mobile.feature.user.profile.R
-import org.mifos.mobile.feature.user.profile.utils.UserDetails
+import org.mifos.mobile.core.model.entity.client.Client
+import org.mifos.mobile.core.model.entity.client.ClientClassification
+import org.mifos.mobile.core.model.entity.client.ClientType
+import org.mifos.mobile.core.model.entity.client.Gender
+import org.mifos.mobile.core.model.entity.client.Group
+import org.mifos.mobile.core.ui.utils.DevicePreview
 
 @Composable
 internal fun UserProfileDetails(
-    userDetails: UserDetails,
+    userDetails: Client,
     modifier: Modifier = Modifier,
 ) {
     Column(modifier) {
         Text(
             modifier = Modifier.padding(top = 16.dp, start = 8.dp),
-            text = stringResource(id = R.string.user_details),
+            text = stringResource(Res.string.user_details),
             color = MaterialTheme.colorScheme.onSecondary,
             style = TextStyle(fontSize = 12.sp, fontWeight = FontWeight.SemiBold),
         )
@@ -47,13 +55,13 @@ internal fun UserProfileDetails(
         ) {
             Icon(
                 modifier = Modifier.padding(top = 8.dp, end = 8.dp),
-                painter = painterResource(id = R.drawable.ic_phone_24dp),
+                painter = painterResource(Res.drawable.ic_phone_24dp),
                 tint = MaterialTheme.colorScheme.surfaceTint,
                 contentDescription = null,
             )
-            if (userDetails.phoneNumber != null) {
+            if (userDetails.mobileNo != null) {
                 Text(
-                    text = userDetails.phoneNumber,
+                    text = userDetails.mobileNo!!,
                     color = MaterialTheme.colorScheme.onSurface,
                     style = TextStyle(fontSize = 14.sp),
                 )
@@ -65,13 +73,13 @@ internal fun UserProfileDetails(
         ) {
             Icon(
                 modifier = Modifier.padding(top = 8.dp, end = 8.dp),
-                painter = painterResource(id = R.drawable.ic_cake_24dp),
+                painter = painterResource(Res.drawable.ic_cake_24dp),
                 tint = MaterialTheme.colorScheme.surfaceTint,
                 contentDescription = null,
             )
-            if (userDetails.dob != null) {
+            if (userDetails.dobDate != null) {
                 Text(
-                    text = userDetails.dob,
+                    text = userDetails.dobDate.toString(),
                     color = MaterialTheme.colorScheme.onSurface,
                     style = TextStyle(fontSize = 14.sp),
                 )
@@ -83,39 +91,55 @@ internal fun UserProfileDetails(
         ) {
             Icon(
                 modifier = Modifier.padding(top = 8.dp, end = 8.dp),
-                painter = painterResource(id = R.drawable.ic_gender_24dp),
+                painter = painterResource(Res.drawable.ic_gender_24dp),
                 tint = MaterialTheme.colorScheme.surfaceTint,
                 contentDescription = null,
             )
             if (userDetails.gender != null) {
                 Text(
-                    text = userDetails.gender,
+                    text = userDetails.gender.toString(),
                     color = MaterialTheme.colorScheme.onSurface,
                     style = TextStyle(fontSize = 14.sp),
+
                 )
             }
         }
     }
 }
 
-@DevicePreviews
+@DevicePreview
 @Composable
 private fun UserProfileDetailsPreview(
     modifier: Modifier = Modifier,
 ) {
     MifosMobileTheme {
         UserProfileDetails(
-            userDetails = UserDetails(
-                userName = "John Doe",
-                accountNumber = "123456",
-                activationDate = "01/01/2021",
+            userDetails = Client(
+                displayName = "John Doe",
+                accountNo = "123456",
+                activationDate = listOf(2021, 1, 1),
                 officeName = "Office Name",
-                clientType = "Client Type",
-                groups = "Groups",
-                clientClassification = "Client Classification",
-                phoneNumber = "1234567890",
-                dob = "01/01/1990",
-                gender = "Male",
+                clientType = ClientType(
+                    id = 1,
+                    name = "Client Type",
+                    active = false,
+                    mandatory = false,
+                ),
+                groups = listOf(Group(id = 1, name = "Group Name")),
+                clientClassification = ClientClassification(
+                    id = 1,
+                    name = "Client Classification",
+                    active = false,
+                    mandatory = false,
+                ),
+                mobileNo = "1234567890",
+                dobDate = listOf(1990, 1, 1),
+                gender = Gender(
+                    id = 1,
+                    name = "Male",
+                    active = false,
+                    mandatory = false,
+                ),
             ),
             modifier = modifier,
         )
