@@ -26,7 +26,6 @@ import mifos_mobile.feature.user_profile.generated.resources.Res
 import mifos_mobile.feature.user_profile.generated.resources.ic_cake_24dp
 import mifos_mobile.feature.user_profile.generated.resources.ic_gender_24dp
 import mifos_mobile.feature.user_profile.generated.resources.ic_phone_24dp
-import mifos_mobile.feature.user_profile.generated.resources.user_details
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 import org.mifos.mobile.core.designsystem.theme.MifosMobileTheme
@@ -46,7 +45,6 @@ internal fun UserProfileDetails(
         Text(
             modifier = Modifier.padding(top = 16.dp, start = 8.dp),
             text = stringResource(Res.string.user_details),
-            color = MaterialTheme.colorScheme.onSecondary,
             style = TextStyle(fontSize = 12.sp, fontWeight = FontWeight.SemiBold),
         )
         Row(

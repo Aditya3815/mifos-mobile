@@ -53,7 +53,7 @@ data class Client(
 
     val isImagePresent: Boolean = false,
 
-    private val externalId: String? = null,
+    val externalId: String? = null,
 
     val mobileNo: String? = null,
 

@@ -41,7 +41,7 @@ import kotlinx.coroutines.launch
 import mifos_mobile.feature.user_profile.generated.resources.Res
 import mifos_mobile.feature.user_profile.generated.resources.placeholder
 import org.jetbrains.compose.resources.painterResource
-import org.mifospay.core.designsystem.icon.MifosIcons
+import org.mifos.mobile.core.designsystem.icon.MifosIcons
 import kotlin.io.encoding.Base64
 import kotlin.io.encoding.ExperimentalEncodingApi
 
@@ -169,7 +169,7 @@ fun EditableProfileImage(
             colors = IconButtonDefaults.iconButtonColors(Color.White),
         ) {
             Icon(
-                imageVector = MifosIcons.Edit2,
+                imageVector = MifosIcons.Edit,
                 contentDescription = null,
                 modifier = Modifier
                     .size(24.dp),

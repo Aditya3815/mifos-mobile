@@ -11,8 +11,10 @@ package org.mifos.mobile.feature.user.profile.di
 
 import org.koin.core.module.dsl.viewModelOf
 import org.koin.dsl.module
+import org.mifos.mobile.feature.user.profile.ProfileViewModel
 import org.mifos.mobile.feature.user.profile.viewmodel.UserDetailViewModel
 
 val UserProfileModule = module {
     viewModelOf(::UserDetailViewModel)
+    viewModelOf(::ProfileViewModel)
 }
