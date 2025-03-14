@@ -18,7 +18,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
@@ -26,8 +25,10 @@ import com.google.maps.android.compose.GoogleMap
 import com.google.maps.android.compose.Marker
 import com.google.maps.android.compose.MarkerState
 import com.google.maps.android.compose.rememberCameraPositionState
-import org.mifos.mobile.core.designsystem.theme.MifosMobileTheme
-import org.mifos.mobile.core.ui.utils.DevicePreviews
+import mifos_mobile.feature.location.generated.resources.Res
+import mifos_mobile.feature.location.generated.resources.mifos_initiative
+import mifos_mobile.feature.location.generated.resources.mifos_location
+import org.jetbrains.compose.resources.stringResource
 
 @Composable
 internal fun LocationsScreen(
@@ -39,13 +40,11 @@ internal fun LocationsScreen(
             .padding(16.dp),
     ) {
         Text(
-            text = stringResource(id = R.string.mifos_initiative),
-            color = MaterialTheme.colorScheme.primary,
+            text = stringResource(Res.string.mifos_initiative),
             style = MaterialTheme.typography.bodyLarge,
         )
         Text(
-            text = stringResource(id = R.string.mifos_location),
-            color = MaterialTheme.colorScheme.onBackground,
+            text = stringResource(Res.string.mifos_location),
             style = MaterialTheme.typography.bodyMedium,
         )
 
@@ -62,17 +61,17 @@ internal fun LocationsScreen(
         ) {
             Marker(
                 state = MarkerState(position = headquarterLatLng),
-                title = stringResource(id = R.string.mifos_initiative),
-                snippet = stringResource(id = R.string.mifos_location),
+                title = Res.string.mifos_initiative.toString(),
+                snippet = Res.string.mifos_location.toString(),
             )
         }
     }
 }
 
-@Composable
-@DevicePreviews
-private fun PreviewLocationsScreen() {
-    MifosMobileTheme {
-        LocationsScreen()
-    }
-}
+//@Composable
+//@DevicePreview
+//private fun PreviewLocationsScreen() {
+//    MifosMobileTheme {
+//        LocationsScreen()
+//    }
+//}
