@@ -44,4 +44,25 @@ data class AnalyticsEvent(
     object ParamKeys {
         const val SCREEN_NAME = "screen_name"
     }
+
+    /**
+     * Converts the analytics event to a human-readable log string.
+     *
+     * The returned string will include the event type and any associated extras in the format:
+     * `Type: {type} | Extras: {key1=value1, key2=value2, ...}`.
+     *
+     * Example output:
+     * ```
+     * Type: screen_view | Extras: screen_name=HomeScreen
+     * Type: Exception | Extras: error_code=500
+     * ```
+     *
+     * @return A formatted string representation of the event for logging purposes.
+     */
+    fun toLogString(): String = buildString {
+        append("Type: $type")
+        if (extras.isNotEmpty()) {
+            append(" | Extras: ${extras.joinToString { "${it.key}=${it.value}" }}")
+        }
+    }
 }

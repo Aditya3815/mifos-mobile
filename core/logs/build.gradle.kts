@@ -22,6 +22,7 @@ kotlin {
     sourceSets {
         commonMain.dependencies {
             implementation(libs.jb.composeRuntime)
+            implementation(libs.kermit.logging)
         }
         androidMain.dependencies {
             implementation(project.dependencies.platform(libs.firebase.bom))
