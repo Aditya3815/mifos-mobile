@@ -9,11 +9,11 @@
  */
 package org.mifos.mobile.core.logs.di
 
+import co.touchlab.kermit.Logger
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.logEvent
 import org.mifos.mobile.core.logs.AnalyticsEvent
 import org.mifos.mobile.core.logs.AnalyticsHelper
-import org.mifos.mobile.core.logs.logging.LogManager
 
 /**
  * Implementation of `AnalyticsHelper` which logs events to a Firebase backend.
@@ -22,7 +22,9 @@ internal class FirebaseAnalyticsHelper(
     private val firebaseAnalytics: FirebaseAnalytics,
 ) : AnalyticsHelper {
     override fun logEvent(event: AnalyticsEvent) {
-        LogManager.logger.d(tag = "Analytics") { "Logging event: ${event.type}" }
+        Logger.d {
+            "Logging event: ${event.type}, extras: ${event.extras}"
+        }
         firebaseAnalytics.logEvent(event.type) {
             for (extra in event.extras) {
                 // Truncate parameter keys and values according to firebase maximum length values.
